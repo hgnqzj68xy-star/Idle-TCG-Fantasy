@@ -1,0 +1,146 @@
+
+---
+---
+---
+
+## **📁 Dossier `styles/`**
+
+---
+
+### **📄 3. `styles/main.css`**
+```css
+:root {
+  --wood-dark: #160d05;
+  --wood-light: #3a2e1e;
+  --gold: #d4af37;
+  --parchment: #f5e7d3;
+  --shadow: #800020;
+  --stone: #5a5a5a;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'IM Fell English', serif;
+}
+
+body {
+  background: var(--wood-dark);
+  color: var(--parchment);
+  min-height: 100vh;
+  background-image:
+    radial-gradient(circle at 10% 20%, rgba(255,255,255,0.05) 0%, transparent 20%),
+    linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.7));
+  background-attachment: fixed;
+}
+
+.screen {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.medieval-nav {
+  display: flex;
+  justify-content: space-around;
+  background: var(--wood-light);
+  border-top: 3px solid var(--gold);
+  border-bottom: 3px solid var(--gold);
+  padding: 10px 0;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.5);
+  z-index: 100;
+}
+
+.nav-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: transparent;
+  border: none;
+  color: var(--stone);
+  cursor: pointer;
+  padding: 5px 10px;
+  transition: all 0.3s;
+  border-radius: 5px;
+}
+
+.nav-btn:hover, .nav-btn.active {
+  color: var(--gold);
+  transform: translateY(-5px);
+}
+
+.nav-btn.active {
+  background: rgba(212, 175, 55, 0.1);
+}
+
+.nav-icon {
+  width: 40px;
+  height: 40px;
+  margin-bottom: 5px;
+}
+
+.stone-accent {
+  fill: none;
+  stroke: var(--gold);
+  stroke-width: 2;
+}
+
+.stone-stroke {
+  fill: none;
+  stroke: var(--stone);
+  stroke-width: 1.5;
+}
+
+button {
+  background: var(--wood-light);
+  color: var(--parchment);
+  border: 2px solid var(--gold);
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: 'Cinzel Decorative', cursive;
+  font-size: 16px;
+  transition: all 0.3s;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+button:hover {
+  background: var(--gold);
+  color: var(--wood-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.4);
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.content-screen {
+  padding: 20px;
+  padding-bottom: 80px;
+}
+
+@media (max-width: 768px) {
+  .medieval-nav {
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 5px;
+  }
+  .nav-btn {
+    flex-direction: column;
+    padding: 5px;
+  }
+  .nav-icon {
+    width: 30px;
+    height: 30px;
+  }
+}

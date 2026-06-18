@@ -1,0 +1,48 @@
+#combat-stats {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 20px;
+}
+
+.combatant {
+  text-align: center;
+  padding: 10px;
+  background: var(--wood-light);
+  border-radius: 10px;
+  border: 2px solid var(--gold);
+}
+
+.health-bar {
+  height: 20px;
+  background: var(--wood-dark);
+  border-radius: 10px;
+  margin: 10px 0;
+  overflow: hidden;
+}
+
+.health-fill {
+  height: 100%;
+  background: var(--gold);
+  border-radius: 10px;
+  transition: width 0.5s;
+}
+
+.health-fill.enemy {
+  background: var(--shadow);
+}
+
+#combat-log {
+  background: var(--wood-light);
+  border: 1px solid var(--gold);
+  border-radius: 5px;
+  padding: 10px;
+  margin: 15px 0;
+  max-height: 200px;
+  overflow-y: auto;
+  color: var(--parchment);
+}
+
+#combat-animation {
+  min-height: 100px;
+  margin: 15px 0;
+}

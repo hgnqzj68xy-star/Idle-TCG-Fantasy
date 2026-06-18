@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://YOUR_PROJECT_REF.supabase.co; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self' https://YOUR_PROJECT_REF.supabase.co">
+  <title>IdleTCG Fantasy - Tavern Cards</title>
+  <link rel="stylesheet" href="styles/main.css">
+  <link rel="stylesheet" href="styles/cards.css">
+  <link rel="stylesheet" href="styles/combat.css">
+  <link rel="stylesheet" href="styles/achievements.css">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative&family=IM+Fell+English&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div id="game-container">
+    <!-- Écran de création de compte -->
+    <div id="start-screen" class="screen">
+      <h1>Bienvenue à la Taverne des Aventuriers</h1>
+      <p>Choisis ton premier booster pour commencer :</p>
+      <div class="booster-selector">
+        <button class="booster-btn" data-faction="forest">Booster de la Forêt</button>
+        <button class="booster-btn" data-faction="mountain">Booster des Montagnes</button>
+        <button class="booster-btn" data-faction="shadow">Booster des Ombres</button>
+      </div>
+    </div>
+
+    <!-- Écran principal du jeu -->
+    <div id="main-screen" class="screen hidden">
+      <!-- Barre de navigation médiévale -->
+      <nav class="medieval-nav">
+        <button class="nav-btn active" data-screen="tavern">
+          <svg class="nav-icon" viewBox="0 0 100 100">
+            <path class="stone-accent" d="M20,20 L80,20 L80,80 L20,80 Z M30,30 L70,30 L70,70 L30,70 Z" fill="none" stroke="currentColor" stroke-width="2"/>
+            <path class="stone-stroke" d="M50,10 L50,90" stroke="currentColor" stroke-width="3"/>
+          </svg>
+          <span>Taverne</span>
+        </button>
+        <button class="nav-btn" data-screen="cards">
+          <svg class="nav-icon" viewBox="0 0 100 100">
+            <rect class="stone-accent" x="20" y="20" width="60" height="60" rx="5" fill="none" stroke="currentColor" stroke-width="2"/>
+            <path class="stone-stroke" d="M30,30 L70,70 M70,30 L30,70" stroke="currentColor" stroke-width="2"/>
+          </svg>
+          <span>Cartes</span>
+        </button>
+        <button class="nav-btn" data-screen="zones">
+          <svg class="nav-icon" viewBox="0 0 100 100">
+            <path class="stone-accent" d="M20,50 Q50,20 80,50 Q50,80 20,50" fill="none" stroke="currentColor" stroke-width="2"/>
+            <circle class="stone-stroke" cx="50" cy="50" r="5" fill="currentColor"/>
+          </svg>
+          <span>Zones</span>
+        </button>
+        <button class="nav-btn" data-screen="combat">
+          <svg class="nav-icon" viewBox="0 0 100 100">
+            <line class="stone-accent" x1="20" y1="20" x2="80" y2="80" stroke="currentColor" stroke-width="3"/>
+            <line class="stone-accent" x1="80" y1="20" x2="20" y2="80" stroke="currentColor" stroke-width="3"/>
+          </svg>
+          <span>Combat</span>
+        </button>
+        <button class="nav-btn" data-screen="achievements">
+          <svg class="nav-icon" viewBox="0 0 100 100">
+            <path class="stone-accent" d="M20,80 L50,20 L80,80 L50,60 L20,80 Z" fill="none" stroke="currentColor" stroke-width="2"/>
+            <circle class="stone-stroke" cx="50" cy="40" r="5" fill="currentColor"/>
+          </svg>
+          <span>Hauts Faits</span>
+        </button>
+        <button class="nav-btn" data-screen="quests">
+          <svg class="nav-icon" viewBox="0 0 100 100">
+            <rect class="stone-accent" x="20" y="20" width="60" height="60" rx="5" fill="none" stroke="currentColor" stroke-width="2"/>
+            <path class="stone-stroke" d="M30,30 L70,70 M70,30 L30,70" stroke="currentColor" stroke-width="2"/>
+          </svg>
+          <span>Quêtes</span>
+        </button>
+        <button class="nav-btn" data-screen="tournament">
+          <svg class="nav-icon" viewBox="0 0 100 100">
+            <circle class="stone-accent" cx="50" cy="50" r="30" fill="none" stroke="currentColor" stroke-width="2"/>
+            <path class="stone-stroke" d="M30,50 L70,50 M50,30 L50,70" stroke="currentColor" stroke-width="2"/>
+          </svg>
+          <span>Tournoi</span>
+        </button>
+      </nav>
+
+      <!-- Contenu dynamique -->
+      <div id="tavern-screen" class="content-screen">
+        <h2>La Taverne</h2>
+        <div id="resource-display">
+          <span>Mana Céleste: <span id="celestial-mana">0</span></span>
+          <span> | Poussière Idle: <span id="idle-dust">0</span></span>
+        </div>
+        <button id="open-booster">Ouvrir un Booster (100 Mana)</button>
+        <div id="booster-animation" class="hidden"></div>
+      </div>
+
+      <div id="cards-screen" class="content-screen hidden">
+        <h2>Collection de Cartes</h2>
+        <div id="card-grid"></div>
+      </div>
+
+      <div id="zones-screen" class="content-screen hidden">
+        <h2>Zones à Explorer</h2>
+        <div id="zone-list"></div>
+      </div>
+
+      <div id="combat-screen" class="content-screen hidden">
+        <h2>Arène de Combat</h2>
+        <div id="combat-log"></div>
+        <div id="combat-animation"></div>
+        <button id="start-combat">Lancer le Combat</button>
+      </div>
+
+      <div id="achievements-screen" class="content-screen hidden">
+        <div id="achievements-container"></div>
+      </div>
+
+      <div id="quests-screen" class="content-screen hidden">
+        <div id="quests-container"></div>
+      </div>
+
+      <div id="tournament-screen" class="content-screen hidden">
+        <div id="tournament-container"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="scripts/supabase.js"></script>
+  <script src="scripts/game.js"></script>
+  <script src="scripts/combat.js"></script>
+  <script src="scripts/quests.js"></script>
+  <script src="scripts/tournaments.js"></script>
+  <script src="scripts/achievements.js"></script>
+</body>
+</html>

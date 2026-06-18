@@ -1,0 +1,180 @@
+.achievements-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+.achievement-card {
+  background: var(--parchment);
+  border: 2px solid var(--gold);
+  border-radius: 10px;
+  padding: 15px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.achievement-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+.achievement-card.completed {
+  background: linear-gradient(135deg, var(--parchment), #d4af37);
+  border-color: var(--shadow);
+}
+
+.achievement-icon {
+  font-size: 40px;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--wood-light);
+  border-radius: 50%;
+  border: 2px solid var(--gold);
+}
+
+.achievement-info {
+  flex: 1;
+}
+
+.achievement-info h4 {
+  color: var(--wood-dark);
+  margin-bottom: 5px;
+}
+
+.achievement-info p {
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.progress-bar {
+  height: 10px;
+  background: var(--wood-light);
+  border-radius: 5px;
+  overflow: hidden;
+  margin-bottom: 5px;
+}
+
+.progress-fill {
+  height: 100%;
+  background: var(--gold);
+  border-radius: 5px;
+}
+
+.achievement-reward {
+  font-size: 14px;
+  color: var(--shadow);
+  font-weight: bold;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: var(--wood-dark);
+  border: 2px solid var(--gold);
+  border-radius: 10px;
+  padding: 20px;
+  max-width: 600px;
+  width: 90%;
+  max-height: 80vh;
+  overflow-y: auto;
+  color: var(--parchment);
+}
+
+.modal-content h2 {
+  color: var(--gold);
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.quest-options {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.quest-option {
+  background: var(--wood-light);
+  color: var(--parchment);
+  border: 1px solid var(--gold);
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.quest-option:hover {
+  background: var(--gold);
+  color: var(--wood-dark);
+}
+
+.achievement-notification {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: var(--parchment);
+  border: 2px solid var(--gold);
+  border-radius: 10px;
+  padding: 15px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  animation: slideIn 0.5s ease-out;
+}
+
+@keyframes slideIn {
+  from { transform: translateX(100%); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+.tournament-matches {
+  margin-top: 20px;
+}
+
+.tournament-match {
+  background: var(--parchment);
+  border: 1px solid var(--gold);
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.watch-match-btn {
+  background: var(--wood-light);
+  color: var(--parchment);
+  border: 1px solid var(--gold);
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 5px;
+}
+
+#tournament-combat-log {
+  background: var(--wood-light);
+  border: 1px solid var(--gold);
+  border-radius: 5px;
+  padding: 10px;
+  margin: 15px 0;
+  max-height: 200px;
+  overflow-y: auto;
+  color: var(--parchment);
+}
